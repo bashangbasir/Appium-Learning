@@ -41,4 +41,8 @@ public class BasePage {
         waitForVisibility(el);
         return el.getText();
     }
+
+    public boolean isElementDisplayed(MobileElement el){
+        return el.isDisplayed();
+    }
 }
