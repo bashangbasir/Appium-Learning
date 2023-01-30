@@ -1,10 +1,8 @@
 package data;
 
-import org.json.simple.parser.ParseException;
 import org.testng.annotations.DataProvider;
 import utils.JsonReader;
 
-import java.io.IOException;
 
 public class TaskData {
 

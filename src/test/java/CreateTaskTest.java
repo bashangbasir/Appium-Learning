@@ -6,7 +6,7 @@ public class CreateTaskTest extends BaseTest{
 
     TaskListPage taskListPage;
 
-    @Test(dataProvider = "Tasks", dataProviderClass = TaskData.class)
+    @Test(dataProvider = "dataFromJson", dataProviderClass = TaskData.class)
     public void createOneTaskTest(String title,  String desc){
 
         taskListPage = new TaskListPage(driver);
