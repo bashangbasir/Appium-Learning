@@ -1,6 +1,10 @@
 package data;
 
+import org.json.simple.parser.ParseException;
 import org.testng.annotations.DataProvider;
+import utils.JsonReader;
+
+import java.io.IOException;
 
 public class TaskData {
 
@@ -12,7 +16,11 @@ public class TaskData {
         };
     }
 
-
-
+    @DataProvider(name = "dataFromJson")
+    public Object[][] dataJSONTask() throws Exception {
+        return JsonReader.getJSONData
+                (System.getProperty("user.dir") + "/data/TasksData.json"
+                        , "Tasks Data", 2);
+}
 
 }
