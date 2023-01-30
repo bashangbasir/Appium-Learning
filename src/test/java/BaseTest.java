@@ -2,10 +2,7 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -15,7 +12,7 @@ public class BaseTest {
 
     public static AppiumDriver driver;
 
-    @BeforeTest
+    @BeforeMethod
     @Parameters({"OS"})
     public static void setUp(@Optional("android") String OS) throws Exception {
         DesiredCapabilities caps = new DesiredCapabilities();
@@ -38,7 +35,7 @@ public class BaseTest {
 
     }
 
-    @AfterTest
+    @AfterMethod
     public void tearDown(){
         if (null != this.driver) {
             this.driver.quit();
