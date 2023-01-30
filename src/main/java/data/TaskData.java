@@ -3,6 +3,9 @@ package data;
 import org.testng.annotations.DataProvider;
 import utils.JsonReader;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 
 public class TaskData {
 
@@ -19,6 +22,13 @@ public class TaskData {
         return JsonReader.getJSONData
                 (System.getProperty("user.dir") + "/data/TaskData.json"
                         , "Tasks Data", 2);
-}
+    }
+
+    @DataProvider(name = "multipleTasks")
+    public Object[][] dataMultipleTask() {
+        return new Object[][]{
+                {Arrays.asList("Watch anime", "Play game", "Check crypto data"), Arrays.asList("anime Onepiece", "game rush royale", "Ripple portfolio")}
+        };
+    }
 
 }

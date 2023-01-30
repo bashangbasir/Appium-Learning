@@ -2,6 +2,8 @@ import data.TaskData;
 import org.testng.annotations.Test;
 import pages.TaskListPage;
 
+import java.util.List;
+
 public class CreateTaskTest extends BaseTest{
 
     TaskListPage taskListPage;
@@ -21,14 +23,17 @@ public class CreateTaskTest extends BaseTest{
 
     }
 
-    @Test
-    public void createMultipleTaskTest(){
+    @Test(dataProvider = "multipleTasks", dataProviderClass = TaskData.class)
+    public void createMultipleTaskTest(List<String> taskNames, List<String> taskDescs){
+
+        String firstTaskTitle = taskNames.get(0);
+        String firstDesc = taskDescs.get(0);
+        String secondTaskTitle = taskNames.get(1);;
+        String secondDesc = taskDescs.get(1);
+        String thirdTaskTitle = taskNames.get(2);;
+        String thirdDesc = taskDescs.get(2);
 
         taskListPage = new TaskListPage(driver);
-        String firstTaskTitle = "Finish up the painting";
-        String firstDesc = "Painting for the new client";
-        String secondTaskTitle = "Start exercise";
-        String secondDesc = "target to achieve 80kg";
 
         taskListPage
                 .verifyNoTaskAvailable()
@@ -41,7 +46,12 @@ public class CreateTaskTest extends BaseTest{
                 .enterTaskTitle(secondTaskTitle)
                 .enterDescriptionNote(secondDesc)
                 .clickSaveBtn()
-                .verifyTaskAdded(1, secondTaskTitle);
+                .verifyTaskAdded(1, secondTaskTitle)
+                .clickAddTaskButton()
+                .enterTaskTitle(thirdTaskTitle)
+                .enterDescriptionNote(thirdDesc)
+                .clickSaveBtn()
+                .verifyTaskAdded(2, thirdTaskTitle);
 
     }
 }
