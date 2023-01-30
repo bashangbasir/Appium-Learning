@@ -19,7 +19,7 @@ public class TaskData {
     @DataProvider(name = "dataFromJson")
     public Object[][] dataJSONTask() throws Exception {
         return JsonReader.getJSONData
-                (System.getProperty("user.dir") + "/data/TasksData.json"
+                (System.getProperty("user.dir") + "/data/TaskData.json"
                         , "Tasks Data", 2);
 }
 
