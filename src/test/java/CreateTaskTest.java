@@ -1,3 +1,4 @@
+import data.TaskData;
 import org.testng.annotations.Test;
 import pages.TaskListPage;
 
@@ -5,12 +6,10 @@ public class CreateTaskTest extends BaseTest{
 
     TaskListPage taskListPage;
 
-    @Test
-    public void createOneTaskTest(){
+    @Test(dataProvider = "Tasks", dataProviderClass = TaskData.class)
+    public void createOneTaskTest(String title,  String desc){
 
         taskListPage = new TaskListPage(driver);
-        String title = "Finish up the painting";
-        String desc = "Painting for the new client";
 
         taskListPage
                 .verifyNoTaskAvailable()
