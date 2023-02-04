@@ -41,7 +41,9 @@ public class TaskListPage extends BasePage{
 
     public TaskListPage verifyNoTaskAvailable(){
         if(System.getProperty("testPlatform").equalsIgnoreCase("iOS")){
-            //TODO need to update for ios
+            int actualTaskNumber = tasks.size();
+            int expectedTaskNumber = 0;
+            Assert.assertEquals(actualTaskNumber, expectedTaskNumber , "Task is expected to be " + expectedTaskNumber);
         }else{
             String actual = getText(noTaskLabel);
             String expected = "Nothing here";
@@ -51,17 +53,18 @@ public class TaskListPage extends BasePage{
     }
 
     public TaskListPage verifyTaskAdded(int index, String expectedTaskTitle){
-
+        String actualTaskTitle;
         if(System.getProperty("testPlatform").equalsIgnoreCase("iOS")){
-            //TODO need to update for ios
+            MobileElement task = tasks.get(index);
+            waitForVisibility(task);
+            actualTaskTitle = task.findElement(MobileBy.id(expectedTaskTitle)).getText();
         }else{
             MobileElement task = tasks.get(index);
             waitForVisibility(task);
-            String actualTaskTittle = task.findElement(MobileBy.id("textViewListView")).getText();
-            Assert.assertEquals(actualTaskTittle, expectedTaskTitle,
-                    "actual title : " + actualTaskTittle + " |" + " expected title : " + expectedTaskTitle);
-
+            actualTaskTitle = task.findElement(MobileBy.id("textViewListView")).getText();
         }
+        Assert.assertEquals(actualTaskTitle, expectedTaskTitle,
+                "actual title : " + actualTaskTitle + " |" + " expected title : " + expectedTaskTitle);
         return this;
     }
 
