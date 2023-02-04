@@ -40,22 +40,28 @@ public class TaskListPage extends BasePage{
     //METHODS
 
     public TaskListPage verifyNoTaskAvailable(){
-        //for android only
-        //TODO need to update for ios
-        String actual = getText(noTaskLabel);
-        String expected = "Nothing here";
-        Assert.assertEquals(actual, expected, "label should " + expected +" instead " + actual );
+        if(System.getProperty("testPlatform").equalsIgnoreCase("iOS")){
+            //TODO need to update for ios
+        }else{
+            String actual = getText(noTaskLabel);
+            String expected = "Nothing here";
+            Assert.assertEquals(actual, expected, "label should " + expected +" instead " + actual );
+        }
         return this;
     }
 
     public TaskListPage verifyTaskAdded(int index, String expectedTaskTitle){
-        // for android only
-        //TODO need to update for ios
-        MobileElement task = tasks.get(index);
-        waitForVisibility(task);
-        String actualTaskTittle = task.findElement(MobileBy.id("textViewListView")).getText();
-        Assert.assertEquals(actualTaskTittle, expectedTaskTitle,
-                "actual title : " + actualTaskTittle + " |" + " expected title : " + expectedTaskTitle);
+
+        if(System.getProperty("testPlatform").equalsIgnoreCase("iOS")){
+            //TODO need to update for ios
+        }else{
+            MobileElement task = tasks.get(index);
+            waitForVisibility(task);
+            String actualTaskTittle = task.findElement(MobileBy.id("textViewListView")).getText();
+            Assert.assertEquals(actualTaskTittle, expectedTaskTitle,
+                    "actual title : " + actualTaskTittle + " |" + " expected title : " + expectedTaskTitle);
+
+        }
         return this;
     }
 
@@ -65,13 +71,15 @@ public class TaskListPage extends BasePage{
     }
 
     public TaskListPage clearAllTasks(){
-        //only for iOS
-        //TODO need to update for Android
-        clickElement(editBtn);
-        for(int i = tasks.size()-1; i >= 0; i--){
-            MobileElement minusBtn = tasks.get(i).findElement(MobileBy.xpath("//XCUIElementTypeButton[starts-with(@name, 'Delete')]"));
-            clickElement(minusBtn);
-            clickElement(deleteBtn);
+        if(System.getProperty("testPlatform").equalsIgnoreCase("iOS")){
+            clickElement(editBtn);
+            for(int i = tasks.size()-1; i >= 0; i--){
+                MobileElement minusBtn = tasks.get(i).findElement(MobileBy.xpath("//XCUIElementTypeButton[starts-with(@name, 'Delete')]"));
+                clickElement(minusBtn);
+                clickElement(deleteBtn);
+            }
+        }else{
+            //TODO need to update for Android
         }
         return this;
     }
