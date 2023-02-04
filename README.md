@@ -8,8 +8,7 @@ Learning Appium by automating ToDo app
 To run the test: 
 1. Start Appium server. 
 2. Start emulator (iOS or Android)
-3. Run testng file to run the test. 
-> run 'testng-ios.xml' for iOS. 
+3. `mvn clean test -P{testPlatform}`
 
-> run 'testng-ios.xml' for Android.
+testPlatform -> `iOS` or `android`
 
