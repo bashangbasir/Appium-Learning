@@ -14,10 +14,13 @@ public class CreateTaskTest extends BaseTest{
         taskListPage = new TaskListPage(driver);
 
         taskListPage
+                .clearAllTasks()
+                .verifyNoTaskAvailable()
                 .clickAddTaskButton()
                 .enterTaskTitle(title)
                 .enterDescriptionNote(desc)
-                .clickSaveBtn();
+                .clickSaveBtn()
+                .verifyTaskAdded(0, title);
     }
 
     @Test(dataProvider = "multipleTasks", dataProviderClass = TaskData.class)
@@ -33,6 +36,8 @@ public class CreateTaskTest extends BaseTest{
         taskListPage = new TaskListPage(driver);
 
         taskListPage
+                .clearAllTasks()
+                .verifyNoTaskAvailable()
                 .clickAddTaskButton()
                 .enterTaskTitle(firstTaskTitle)
                 .enterDescriptionNote(firstDesc)
