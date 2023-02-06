@@ -4,10 +4,16 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 
+import static pages.TaskListPage.getTaskListPage;
+
 public class CreateTaskPage extends BasePage{
 
-    public CreateTaskPage(AppiumDriver appiumDriver) {
+    private CreateTaskPage(AppiumDriver appiumDriver) {
         super(appiumDriver);
+    }
+
+    public static CreateTaskPage getCreateTaskPage(AppiumDriver appiumDriver){
+        return new CreateTaskPage(appiumDriver);
     }
 
     //MOBILE ELEMENTS
@@ -40,7 +46,7 @@ public class CreateTaskPage extends BasePage{
 
     public TaskListPage clickSaveBtn(){
         clickElement(saveBtn);
-        return new TaskListPage(driver);
+        return getTaskListPage(driver);
     }
 
 }

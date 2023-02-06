@@ -4,6 +4,8 @@ import pages.TaskListPage;
 
 import java.util.List;
 
+import static pages.TaskListPage.getTaskListPage;
+
 public class CreateTaskTest extends BaseTest{
 
     TaskListPage taskListPage;
@@ -11,7 +13,7 @@ public class CreateTaskTest extends BaseTest{
     @Test(dataProvider = "dataFromJson", dataProviderClass = TaskData.class)
     public void createOneTaskTest(String title,  String desc){
 
-        taskListPage = new TaskListPage(driver);
+        taskListPage = getTaskListPage(driver);
 
         taskListPage
                 .verifyNoTaskAvailable()
@@ -33,7 +35,7 @@ public class CreateTaskTest extends BaseTest{
         String thirdTaskTitle = taskNames.get(2);;
         String thirdDesc = taskDescs.get(2);
 
-        taskListPage = new TaskListPage(driver);
+        taskListPage = getTaskListPage(driver);
 
         taskListPage
                 .verifyNoTaskAvailable()

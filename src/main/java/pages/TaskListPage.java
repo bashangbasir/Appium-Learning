@@ -8,10 +8,16 @@ import org.testng.Assert;
 
 import java.util.List;
 
+import static pages.CreateTaskPage.getCreateTaskPage;
+
 public class TaskListPage extends BasePage{
 
-    public TaskListPage(AppiumDriver appiumDriver){
+    private TaskListPage(AppiumDriver appiumDriver){
         super(appiumDriver);
+    }
+
+    public static TaskListPage getTaskListPage(AppiumDriver appiumDriver){
+        return new TaskListPage(appiumDriver);
     }
 
     //MOBILE ELEMENTS
@@ -49,6 +55,6 @@ public class TaskListPage extends BasePage{
 
     public CreateTaskPage clickAddTaskButton(){
         clickElement(addTaskBtn);
-        return new CreateTaskPage(driver);
+        return getCreateTaskPage(driver);
     }
 }
