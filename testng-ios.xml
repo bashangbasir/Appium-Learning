@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Local Test Android" verbose="1" >
+	<parameter name="OS" value="iOS"/>
+	<test name="Todo App">
+		<classes>
+			<class name="CreateTaskTest">
+				<methods>
+					<include name="createOneTaskTest"/>
+					<include name="createMultipleTaskTest"/>
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

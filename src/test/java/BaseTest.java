@@ -16,6 +16,7 @@ public class BaseTest {
     @Parameters({"OS"})
     public static void setUp(@Optional("android") String OS) throws Exception {
         DesiredCapabilities caps = new DesiredCapabilities();
+        System.setProperty("testPlatform", OS);
 
         if(OS.equalsIgnoreCase("android")){
             caps.setCapability("platformName","Android");
