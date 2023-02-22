@@ -6,8 +6,7 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 
-name: Java CI with Maven
-
+name: Run Appium Tests with Android
 on:
   pull_request:
     branches: [ "main" ]
